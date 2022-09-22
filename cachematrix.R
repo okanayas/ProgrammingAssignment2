@@ -15,19 +15,19 @@ setsolve <- function(solve) inv <<- solve
 getsolve <- function() inv
 list(set = set, get = get,
      setsolve = setsolve, 
-     getsolve = getsolve)
+     getsolve = getsolve) ##now our matrix is there
 }
 
 
-## Now the cacheSolve function that will compute the inverse of the matrix
+## Next, the cacheSolve function that will compute the inverse of the matrix
 ## but will check if it's already been calculated, in which case it will retrieve it from the cache
 
 
 cacheSolve <- function(x, ...) {
-  inv <- x$getsolve()
-  if(!is.null(inv)) {
-    message("getting inversed matrix")
-    return(inv)
+  inv <- x$getsolve() 
+  if(!is.null(inv)) { ##here the function checks whether inv is NULL
+    message("getting inversed matrix") ##in which case it gets the inverse of the matrix
+    return(inv)  ##and returns it
   }
 mat <- x$get()
 inv <- solve(mat, ...)
